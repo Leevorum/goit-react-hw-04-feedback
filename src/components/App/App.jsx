@@ -8,22 +8,9 @@ export function App() {
   const [state, setState] = useState({ good: 0, neutral: 0, bad: 0 });
 
   const handleBtnIncrement = name => {
-    switch (name) {
-      case 'good':
-        setState({ ...state, good: state.good + 1 });
-        break;
-
-      case 'neutral':
-        setState({ ...state, neutral: state.neutral + 1 });
-        break;
-
-      case 'bad':
-        setState({ ...state, bad: state.bad + 1 });
-        break;
-
-      default:
-        return;
-    }
+    setState(prevState => {
+      return { ...prevState, [name]: prevState[name] + 1 };
+    });
   };
 
   const countTotalFeedback = () => {
